@@ -25,28 +25,28 @@ def print_board(board):
 def place_ships(board):
     for ship in range(5):
         ship_row, ship_column = randint(0,5), randint(0,5)
-        while board[ship_row][ship_column] == '@':
+        while board[ship_row][ship_column] == 'X':
             ship_row, ship_column = randint(0,5), randint(0,5)
-        board[ship_row][ship_column] = '@'
+        board[ship_row][ship_column] = 'X'
         
 def user_guess(): 
     # Wrap in try and except to get valid input, will crash if nothin is entered.
     while True:
         try: 
             row = input("Enter the row of the ship: ")
-            if row in '12345678':
+            if row in '123456':
                 row = int(row) - 1
                 break
         except ValueError:
-            print('Enter a valid letter between A-H')
+            print('Enter a valid letter between 1-6')
     while True:
         try: 
-            column = input("Enter the column of the ship: ").upper()
-            if column in 'ABCDEFGH':
+            column = input("Enter the column of the ship: \n").upper()
+            if column in 'ABCDEF':
                 column = LETTERS_TO_NUMBERS[column]
                 break
         except KeyError:
-            print('Enter a valid letter between A-H')
+            print('Enter a valid letter between A-F')
     return row, column
 
 def count_hit_ships(board):
@@ -64,13 +64,12 @@ def count_hit_ships(board):
 
 def play_game():
     place_ships(HIDDEN_BOARD)
-    print_board(GUESS_BOARD)
-    user_guess()
     turns = 5
     while turns > 0:
         print('Guess a battleship location')
-        row, column = place_ships()
-        if GUESS_BOARD[row][column] == "-":
+        print_board(GUESS_BOARD)
+        row, column = user_guess()
+        if GUESS_BOARD[row][column] == "~":
             print("You guessed that one already.")
         elif HIDDEN_BOARD[row][column] == "X":
             print("Hit")
@@ -78,7 +77,7 @@ def play_game():
             turns -= 1  
         else:
             print("MISS!")
-            GUESS_BOARD[row][column] = "-"   
+            GUESS_BOARD[row][column] = "~"   
             turns -= 1     
         if count_hit_ships(GUESS_BOARD) == 5:
             print("You win!")
