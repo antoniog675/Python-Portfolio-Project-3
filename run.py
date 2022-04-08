@@ -1,4 +1,4 @@
-import random
+from random import randint
 
 PLAYER_BOARD = [[" "] * 6 for i in range(6)]
 COMPUTER_BOARD = [[" "] * 6 for i in range(6)]
@@ -8,7 +8,12 @@ LETTERS_TO_NUMBERS = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5}
 
 def print_board(board):
     print("-" * 15)
-    print("  User board")
+    if board == PLAYER_BOARD:
+        print("  User board")
+    else:
+        if board == COMPUTER_BOARD:
+            print(" Computer board")
+
     print("-" * 15)
     print("  A B C D E F")
     print("  +-+-+-+-+-+")
@@ -20,7 +25,7 @@ def print_board(board):
 def place_ships(board):
     for ship in range(5):
         ship_row, ship_column = randint(0,5), randint(0,5)
-        while board [ship_row][ship_column] == 'X':
+        while board[ship_row][ship_column] == 'X':
             ship_row, ship_column = randint(0,5), randint(0,5)
         board[ship_row][ship_column] = 'X'
         
@@ -35,6 +40,18 @@ def user_guess():
         print("Please enter a valid column: ").upper()
     return int(row) -1, LETTERS_TO_NUMBERS[column]
 
+def count_hit_ships(board):
+    count = 0
+    for row in board:
+        for column in row:
+            if column == 'X':
+                count += 1
+    return count
+
+place_ships(PLAYER_BOARD)
+turns = 10
+print_board(PLAYER_BOARD)
+print_board(COMPUTER_BOARD)
 
 
 def get_user_inputs():
