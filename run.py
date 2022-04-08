@@ -12,7 +12,7 @@ def print_board(board):
         print("  User board")
     else:
         if board == COMPUTER_BOARD:
-            print(" Computer board")
+            print("Computer board")
 
     print("-" * 15)
     print("  A B C D E F")
@@ -50,6 +50,7 @@ def count_hit_ships(board):
 
 place_ships(PLAYER_BOARD)
 turns = 10
+place_ships(COMPUTER_BOARD)
 print_board(PLAYER_BOARD)
 print_board(COMPUTER_BOARD)
 
