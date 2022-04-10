@@ -80,6 +80,14 @@ def count_hit_ships(board):
                 count += 1
     return count
 
+def count_computer_hit_ships(board):
+    count = 0
+    for row in board:
+        for column in row:
+            if column == '*':
+                count += 1
+    return count
+
 def play_game():
     """
     This function will start the game, it will place the ships in the hidden board
@@ -91,7 +99,7 @@ def play_game():
     """
     place_ships(HIDDEN_BOARD) #Computers board with random ships
     place_ships(COMPUTER_HIDDEN_BOARD) #Users board randomly selected for them
-    turns = 5
+    turns = 10
     while turns > 0:
         print('Guess a battleship location')
         print_board(COMPUTER_HIDDEN_BOARD)
@@ -119,22 +127,28 @@ def play_game():
             end_of_game()
 
 def computer_guess_validate(board):
-    computer_turns = 5
     row, column = board
     if COMPUTER_HIDDEN_BOARD[row][column] == "~":
         pass
+        print("Getting new value if already guessed")
+        get_new_computer_guess = computers_guess()
+        computer_guess_validate(get_new_computer_guess)
             # print("You guessed that one already.") Create loop to call computer guess function again
+    elif COMPUTER_HIDDEN_BOARD[row][column] == "*":
+        print("Getting new value if hit")
+        get_new_computer_guess = computer_guess()
+        computer_guess_validate(get_new_computer_guess)
+        pass #Get new computer inputs
     elif COMPUTER_HIDDEN_BOARD[row][column] == "X":
         print("COMPUTER HIT YOUR SHIP!")
-        COMPUTER_HIDDEN_BOARD[row][column] = "*" 
-        computer_turns -= 1
+        COMPUTER_HIDDEN_BOARD[row][column] = "*"
     else:
         print("COMPUTER MISSED!")
         COMPUTER_HIDDEN_BOARD[row][column] = "~"   
-        computer_turns -= 1
-    print(f'Computer has {computer_turns} turn(s) left')
-    if count_hit_ships(COMPUTER_GUESS_BOARD) == 5:
+    if count_computer_hit_ships(COMPUTER_HIDDEN_BOARD) == 5:
         print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
+        
+
 
 def get_user_inputs():
     """
