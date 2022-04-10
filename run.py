@@ -2,8 +2,8 @@ from random import randint
 import string
 import random
 
-HIDDEN_BOARD = [[" "] * 6 for i in range(6)] #Computer ships revealed
-GUESS_BOARD = [[" "] * 6 for i in range(6)] #User guessing game for computers fleet
+HIDDEN_BOARD = [[" "] * 6 for i in range(6)] #Randomly places ships for user, computer will try and guess this...
+GUESS_BOARD = [[" "] * 6 for i in range(6)] #User guessing board for computers fleet/ so this is basicallt the computers board...
 COMPUTER_HIDDEN_BOARD = [[" "] * 6 for i in range(6)] #Users board, ships hidden, users will be able to see they're own board
 COMPUTER_GUESS_BOARD = [[" "] * 6 for i in range(6)] #Computer will be using this for its guess's
 LETTERS_TO_NUMBERS = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5}
@@ -59,11 +59,11 @@ def user_guess():
 
 def computers_guess():
     row = randint(0,6)
-    print(row)
     column = chr(random.randint(ord('a'), ord('f'))).upper()
     column = LETTERS_TO_NUMBERS[column]
     # lowerchar = string.ascii_lowercase
     # randchar = random.choice(lowerchar)
+    print(row, column)
     return row, column
 
 def count_hit_ships(board):
@@ -87,7 +87,7 @@ def play_game():
     direct hit. If the same ship location has already been called it will notify the user
     that that position cannot be called, users will keep their turn.
     """
-    place_ships(HIDDEN_BOARD)
+    place_ships(HIDDEN_BOARD) #Computers board with random ships
     place_ships(COMPUTER_HIDDEN_BOARD) #Users board randomly selected for them
     turns = 5
     while turns > 0:
@@ -95,7 +95,6 @@ def play_game():
         print_board(COMPUTER_HIDDEN_BOARD)
         print_board(GUESS_BOARD)
         row, column = user_guess()
-        print(row,column)
         if GUESS_BOARD[row][column] == "~":
             print("You guessed that one already.")
         elif HIDDEN_BOARD[row][column] == "X":
@@ -110,6 +109,7 @@ def play_game():
             print("You hit all 5 ships! CONGRATULATIONS!")
             break
         computer_guess_location = computers_guess()
+        computer_guess_validate(computer_guess_location)
         print(f'Computer guessed {computer_guess_location}')
 
         print("You have " + str(turns) + " turns left")
@@ -117,24 +117,26 @@ def play_game():
             print("GAME OVER! You ran out of turns, you did not hit all the ships...")
             play_or_exit = input("Do you wish to play again? Y/N ").upper()
             if play_or_exit == "Y":
-                play_game()
+                get_user_inputs()
             elif play_or_exit == "N":
                 exit()
 
-# def computer_guess_validate():
-#     row, column = computers_guess()
-#     if COMPUTER_HIDDEN_BOARD[row][column] == "~":
-#             print("You guessed that one already.")
-#     elif COMPUTER_GUESS_BOARD[row][column] == "X":
-#         print("COMPUTER HIT YOUR SHIP!")
-#         COMPUTER_HIDDEN_BOARD[row][column] = "*" 
-#         turns -= 1
-#     else:
-#         print("COMPUTER MISSED!")
-#         COMPUTER_HIDDEN_BOARD[row][column] = "~"   
-#         turns -= 1
-#     if count_hit_ships(COMPUTER_HIDDEN_BOARD) == 5:
-#         print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
+def computer_guess_validate(board):
+    computer_turns = 5
+    row, column = board
+    if COMPUTER_HIDDEN_BOARD[row][column] == "~":
+        pass
+            # print("You guessed that one already.") Create loop to call computer guess function again
+    elif COMPUTER_GUESS_BOARD[row][column] == "X":
+        print("COMPUTER HIT YOUR SHIP!")
+        COMPUTER_HIDDEN_BOARD[row][column] = "*" 
+        computer_turns -= 1
+    else:
+        print("COMPUTER MISSED!")
+        COMPUTER_HIDDEN_BOARD[row][column] = "~"   
+        computer_turns -= 1
+    if count_hit_ships(COMPUTER_GUESS_BOARD) == 5:
+        print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
 
 def get_user_inputs():
     """
