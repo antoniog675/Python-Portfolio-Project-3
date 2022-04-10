@@ -41,24 +41,26 @@ def user_guess():
     # Wrap in try and except to get valid input, will crash if nothin is entered.
     while True:
         try: 
-            row = input("Enter the row of the ship: ")
+            row = input("Enter the row of the ship 1-6: ")
             if row in '123456':
                 row = int(row) - 1
                 break
-        except ValueError:
-            print('Enter a valid letter between 1-6')
+            elif row != '123456':
+                print("Enter a valid number between 1-6")
+        except KeyError:
+            print('Enter a valid number between 1-6 2')
     while True:
         try: 
-            column = input("Enter the column of the ship: \n").upper()
+            column = input("Enter the column of the ship A-F: \n").upper()
             if column in 'ABCDEF':
                 column = LETTERS_TO_NUMBERS[column]
                 break
-        except KeyError:
+        except ValueError:
             print('Enter a valid letter between A-F')
     return row, column
 
 def computers_guess():
-    row = randint(0,6)
+    row = (randint(0,6) - 1)
     column = chr(random.randint(ord('a'), ord('f'))).upper()
     column = LETTERS_TO_NUMBERS[column]
     # lowerchar = string.ascii_lowercase
@@ -112,14 +114,9 @@ def play_game():
         computer_guess_validate(computer_guess_location)
         print(f'Computer guessed {computer_guess_location}')
 
-        print("You have " + str(turns) + " turns left")
+        print("You have " + str(turns) + " turn(s) left")
         if turns == 0:
-            print("GAME OVER! You ran out of turns, you did not hit all the ships...")
-            play_or_exit = input("Do you wish to play again? Y/N ").upper()
-            if play_or_exit == "Y":
-                get_user_inputs()
-            elif play_or_exit == "N":
-                exit()
+            end_of_game()
 
 def computer_guess_validate(board):
     computer_turns = 5
@@ -127,7 +124,7 @@ def computer_guess_validate(board):
     if COMPUTER_HIDDEN_BOARD[row][column] == "~":
         pass
             # print("You guessed that one already.") Create loop to call computer guess function again
-    elif COMPUTER_GUESS_BOARD[row][column] == "X":
+    elif COMPUTER_HIDDEN_BOARD[row][column] == "X":
         print("COMPUTER HIT YOUR SHIP!")
         COMPUTER_HIDDEN_BOARD[row][column] = "*" 
         computer_turns -= 1
@@ -135,6 +132,7 @@ def computer_guess_validate(board):
         print("COMPUTER MISSED!")
         COMPUTER_HIDDEN_BOARD[row][column] = "~"   
         computer_turns -= 1
+    print(f'Computer has {computer_turns} turn(s) left')
     if count_hit_ships(COMPUTER_GUESS_BOARD) == 5:
         print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
 
@@ -153,6 +151,16 @@ def get_user_inputs():
     else:
         print("Uh oh, please enter a valid input")
         get_user_inputs()
+
+def end_of_game():
+    print_board(COMPUTER_HIDDEN_BOARD)
+    print_board(GUESS_BOARD)
+    print("GAME OVER! You ran out of turns, you did not hit all the ships...")
+    play_or_exit = input("Do you wish to play again? Y/N ").upper()
+    if play_or_exit == "Y":
+        get_user_inputs()
+    elif play_or_exit == "N":
+        exit()
 
 print("Welcome to Battleships!\n")
 get_user_inputs() 
