@@ -50,7 +50,7 @@ def user_guess():
             print('Enter a valid number between 1-6')
     while True:
         try: 
-            column = input("Enter the column of the ship A-F:").upper()
+            column = input("Enter the column of the ship A-F: ").upper()
             if column in 'ABCDEF':
                 column = LETTERS_TO_NUMBERS[column]
                 break
@@ -62,9 +62,6 @@ def computers_guess():
     row = randint(0,5)
     column = chr(random.randint(ord('a'), ord('f'))).upper()
     column = LETTERS_TO_NUMBERS[column]
-    # lowerchar = string.ascii_lowercase
-    # randchar = random.choice(lowerchar)
-    print(row, column)
     return row, column
 
 def count_hit_ships(board):
@@ -102,7 +99,7 @@ def play_game():
     """
     place_ships(HIDDEN_BOARD) #Computers board with random ships
     place_ships(COMPUTER_HIDDEN_BOARD) #Users board randomly selected for them
-    turns = 5
+    turns = 10
     while turns > 0:
         print('Guess a battleship location')
         print_board(COMPUTER_HIDDEN_BOARD)
@@ -119,7 +116,7 @@ def play_game():
             GUESS_BOARD[row][column] = "X"
             turns -= 1
         else:
-            print("YOU MISSED!")
+            print("\nYOU MISSED!")
             GUESS_BOARD[row][column] = "~"
             turns -= 1
         computer_guess_location = computers_guess()
@@ -130,27 +127,26 @@ def play_game():
         computer_ship_count = count_computer_hit_ships(COMPUTER_HIDDEN_BOARD)
 
 
-        print(f'Player it ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
+        print(f'Player hit ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
         print("You have " + str(turns) + " turn(s) left \n")
         win_lose_or_tie(player_ship_count, computer_ship_count, turns)
     
 def computer_guess_validate(board):
     row, column = board
     if COMPUTER_HIDDEN_BOARD[row][column] == "~":
-        print("Getting new value if already guessed")
         get_new_computer_guess = computers_guess()
         computer_guess_validate(get_new_computer_guess)
             # print("You guessed that one already.") Create loop to call computer guess function again
     elif COMPUTER_HIDDEN_BOARD[row][column] == "*":
-        print("Getting new value if hit")
+        # Will get another value if random point has already been guessed
         get_new_computer_guess = computers_guess()
         computer_guess_validate(get_new_computer_guess)
-        pass #Get new computer inputs
+        #Get new computer inputs
     elif COMPUTER_HIDDEN_BOARD[row][column] == "X":
-        print("COMPUTER HIT YOUR SHIP!")
+        print("COMPUTER HIT YOUR SHIP!\n")
         COMPUTER_HIDDEN_BOARD[row][column] = "*"
     else:
-        print("COMPUTER MISSED!")
+        print("COMPUTER MISSED!\n")
         COMPUTER_HIDDEN_BOARD[row][column] = "~"   
     # if count_computer_hit_ships(COMPUTER_HIDDEN_BOARD) == 5:
     #     print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
@@ -174,19 +170,17 @@ def get_user_inputs():
 
 def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
     if (player_ship_count and computer_ship_count > 0 and player_ship_count == computer_ship_count) and (turns == 0):
-        outcome = print("It is a tie!")
+        print("It is a tie!")
         print(f'Player hit ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
-        end_of_game(outcome)
-    elif player_ship_count == 2 or (player_ship_count > computer_ship_count and turns == 0):
-        outcome = print("Congratulations, you beat the computer!")
-        end_of_game(outcome)
-    elif computer_ship_count == 2 or (computer_ship_count > player_ship_count and turns == 0):
-        outcome = print("The Computer has won this round....better luck next time")
-        end_of_game(outcome)
+        end_of_game()
+    elif player_ship_count == 5 or (player_ship_count > computer_ship_count and turns == 0):
+        print("Congratulations, you beat the computer!")
+        end_of_game()
+    elif computer_ship_count == 5 or (computer_ship_count > player_ship_count and turns == 0):
+        print("The Computer has won this round....better luck next time")
+        end_of_game()
 
-def end_of_game(outcome):
-    print_board(COMPUTER_HIDDEN_BOARD)
-    print_board(GUESS_BOARD)
+def end_of_game():
     play_or_exit = input("Do you wish to play again? Y/N ").upper()
     if play_or_exit == "Y":
         get_user_inputs()
@@ -194,6 +188,6 @@ def end_of_game(outcome):
         exit()
 
 print("Welcome to Battleships!\n")
-get_user_inputs() 
+get_user_inputs()
 #This will call on the get_user_inputs() function and get user name
 #and if they're ready to play the game.
