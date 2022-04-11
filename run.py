@@ -101,7 +101,7 @@ def play_game():
     place_ships(COMPUTER_HIDDEN_BOARD) #Users board randomly selected for them
     turns = 10
     while turns > 0:
-        print('Guess a battleship location')
+        print('\nGuess a battleship location')
         print_board(COMPUTER_HIDDEN_BOARD)
         print_board(GUESS_BOARD)
         row, column = user_guess()
@@ -112,7 +112,7 @@ def play_game():
             print("You guessed that one already.")
             continue
         elif HIDDEN_BOARD[row][column] == "X":
-            print("HIT!")
+            print("\nHIT!")
             GUESS_BOARD[row][column] = "X"
             turns -= 1
         else:
@@ -121,7 +121,7 @@ def play_game():
             turns -= 1
         computer_guess_location = computers_guess()
         computer_guess_validate(computer_guess_location)
-        print(f'Computer guessed {computer_guess_location}')
+        print(f'Computer guessed {computer_guess_location}\n')
 
         player_ship_count = count_hit_ships(GUESS_BOARD)
         computer_ship_count = count_computer_hit_ships(COMPUTER_HIDDEN_BOARD)
@@ -129,7 +129,17 @@ def play_game():
 
         print(f'Player hit ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
         print("You have " + str(turns) + " turn(s) left \n")
-        win_lose_or_tie(player_ship_count, computer_ship_count, turns)
+        print_next_board = input("Do you want to continue? Y/N: ").upper()
+        # Add code so if user enters anything else it will ask them to enter a valid number
+        #prevent the game from crashing if anything apart from Y or N is put through..
+        if print_next_board == "Y":
+            pass
+        elif print_next_board == "N":
+            print("GAME OVER")
+            exit()
+
+                
+
     
 def computer_guess_validate(board):
     row, column = board
@@ -143,10 +153,10 @@ def computer_guess_validate(board):
         computer_guess_validate(get_new_computer_guess)
         #Get new computer inputs
     elif COMPUTER_HIDDEN_BOARD[row][column] == "X":
-        print("COMPUTER HIT YOUR SHIP!\n")
+        print("COMPUTER HIT YOUR SHIP")
         COMPUTER_HIDDEN_BOARD[row][column] = "*"
     else:
-        print("COMPUTER MISSED!\n")
+        print("COMPUTER MISSED!")
         COMPUTER_HIDDEN_BOARD[row][column] = "~"   
     # if count_computer_hit_ships(COMPUTER_HIDDEN_BOARD) == 5:
     #     print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
