@@ -132,8 +132,13 @@ def play_game():
         print_next_board = input("Do you want to continue? Y/N: ").upper()
         # Add code so if user enters anything else it will ask them to enter a valid number
         #prevent the game from crashing if anything apart from Y or N is put through..
-        continue_game(print_next_board)
-        print("Game is continuing")
+        if turns == 0:
+            win_lose_or_tie(player_ship_count, computer_ship_count, turns)
+            print("Hello")
+        else:
+            continue_game(print_next_board)
+            print("Game is continuing")
+
 
 def continue_game(x):
     if x == "Y":
@@ -183,7 +188,7 @@ def get_user_inputs():
         get_user_inputs()
 
 def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
-    if (player_ship_count and computer_ship_count > 0 and player_ship_count == computer_ship_count) and (turns == 0):
+    if (player_ship_count == computer_ship_count) and (turns == 0):
         print("It is a tie!")
         print(f'Player hit ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
         end_of_game()
@@ -197,11 +202,19 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
 def end_of_game():
     play_or_exit = input("Do you wish to play again? Y/N ").upper()
     if play_or_exit == "Y":
-        get_user_inputs()
+        #Clear board and then start all of it again
+        start_game()
     elif play_or_exit == "N":
         exit()
 
 print("Welcome to Battleships!\n")
-get_user_inputs()
+
+def start_game():
+    get_user_inputs()
+
+
+start_game()
+
+
 #This will call on the get_user_inputs() function and get user name
 #and if they're ready to play the game.
