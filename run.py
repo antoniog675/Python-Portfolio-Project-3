@@ -101,9 +101,9 @@ def play_game():
     place_ships(COMPUTER_HIDDEN_BOARD) #Users board randomly selected for them
     turns = 10
     while turns > 0:
-        print('\nGuess a battleship location')
         print_board(COMPUTER_HIDDEN_BOARD)
         print_board(GUESS_BOARD)
+        print('\nGuess a battleship location')
         row, column = user_guess()
         if GUESS_BOARD[row][column] == "~":
             print("You guessed that one already.")
@@ -132,15 +132,19 @@ def play_game():
         print_next_board = input("Do you want to continue? Y/N: ").upper()
         # Add code so if user enters anything else it will ask them to enter a valid number
         #prevent the game from crashing if anything apart from Y or N is put through..
-        if print_next_board == "Y":
-            pass
-        elif print_next_board == "N":
-            print("GAME OVER")
-            exit()
+        continue_game(print_next_board)
+        print("Game is continuing")
 
-                
+def continue_game(x):
+    if x == "Y":
+        pass
+    elif x == "N":
+        print("GAME OVER")
+        exit()
+    else:
+        return continue_game(input("Please enter Y/N: ").upper())
 
-    
+
 def computer_guess_validate(board):
     row, column = board
     if COMPUTER_HIDDEN_BOARD[row][column] == "~":
