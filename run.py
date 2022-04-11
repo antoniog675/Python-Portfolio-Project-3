@@ -99,7 +99,7 @@ def play_game():
     """
     place_ships(HIDDEN_BOARD) #Computers board with random ships
     place_ships(COMPUTER_HIDDEN_BOARD) #Users board randomly selected for them
-    turns = 10
+    turns = 2
     while turns > 0:
         print_board(COMPUTER_HIDDEN_BOARD)
         print_board(GUESS_BOARD)
@@ -129,15 +129,14 @@ def play_game():
 
         print(f'Player hit ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
         print("You have " + str(turns) + " turn(s) left \n")
-        print_next_board = input("Do you want to continue? Y/N: ").upper()
         # Add code so if user enters anything else it will ask them to enter a valid number
         #prevent the game from crashing if anything apart from Y or N is put through..
         if turns == 0:
             win_lose_or_tie(player_ship_count, computer_ship_count, turns)
-            print("Hello")
-        else:
+        elif turns > 0:
+            print_next_board = input("Do you want to continue? Y/N: ").upper()
             continue_game(print_next_board)
-            print("Game is continuing")
+            
 
 
 def continue_game(x):
@@ -191,21 +190,21 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
     if (player_ship_count == computer_ship_count) and (turns == 0):
         print("It is a tie!")
         print(f'Player hit ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
-        end_of_game()
+        # end_of_game()
     elif player_ship_count == 5 or (player_ship_count > computer_ship_count and turns == 0):
         print("Congratulations, you beat the computer!")
-        end_of_game()
+        # end_of_game()
     elif computer_ship_count == 5 or (computer_ship_count > player_ship_count and turns == 0):
         print("The Computer has won this round....better luck next time")
-        end_of_game()
+        # end_of_game()
 
-def end_of_game():
-    play_or_exit = input("Do you wish to play again? Y/N ").upper()
-    if play_or_exit == "Y":
-        #Clear board and then start all of it again
-        start_game()
-    elif play_or_exit == "N":
-        exit()
+# def end_of_game():
+#     play_or_exit = input("Do you wish to play again? Y/N ").upper()
+#     if play_or_exit == "Y":
+#         #Clear board and then start all of it again
+#         start_game()
+#     elif play_or_exit == "N":
+#         exit()
 
 print("Welcome to Battleships!\n")
 
