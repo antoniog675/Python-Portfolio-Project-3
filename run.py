@@ -99,7 +99,7 @@ def play_game():
     """
     place_ships(HIDDEN_BOARD) #Computers board with random ships
     place_ships(COMPUTER_HIDDEN_BOARD) #Users board randomly selected for them
-    turns = 2
+    turns = 10
     while turns > 0:
         print_board(COMPUTER_HIDDEN_BOARD)
         print_board(GUESS_BOARD)
@@ -136,8 +136,6 @@ def play_game():
         elif turns > 0:
             print_next_board = input("Do you want to continue? Y/N: ").upper()
             continue_game(print_next_board)
-            
-
 
 def continue_game(x):
     if x == "Y":
@@ -147,7 +145,6 @@ def continue_game(x):
         exit()
     else:
         return continue_game(input("Please enter Y/N: ").upper())
-
 
 def computer_guess_validate(board):
     row, column = board
@@ -168,7 +165,6 @@ def computer_guess_validate(board):
         COMPUTER_HIDDEN_BOARD[row][column] = "~"   
     # if count_computer_hit_ships(COMPUTER_HIDDEN_BOARD) == 5:
     #     print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
-        
 
 def get_user_inputs():
     """
@@ -197,7 +193,6 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
     elif computer_ship_count == 5 or (computer_ship_count > player_ship_count and turns == 0):
         print("The Computer has won this round....better luck next time")
         # end_of_game()
-
 # def end_of_game():
 #     play_or_exit = input("Do you wish to play again? Y/N ").upper()
 #     if play_or_exit == "Y":
@@ -211,9 +206,4 @@ print("Welcome to Battleships!\n")
 def start_game():
     get_user_inputs()
 
-
 start_game()
-
-
-#This will call on the get_user_inputs() function and get user name
-#and if they're ready to play the game.
