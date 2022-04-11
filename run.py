@@ -47,11 +47,11 @@ def user_guess():
                 break
             elif row != '123456':
                 print("Enter a valid number between 1-6")
-        except KeyError:
-            print('Enter a valid number between 1-6 2')
+        except ValueError:
+            print('Enter a valid number between 1-6')
     while True:
         try: 
-            column = input("Enter the column of the ship A-F: \n").upper()
+            column = input("Enter the column of the ship A-F:").upper()
             if column in 'ABCDEF':
                 column = LETTERS_TO_NUMBERS[column]
                 break
@@ -60,7 +60,7 @@ def user_guess():
     return row, column
 
 def computers_guess():
-    row = (randint(0,6) - 1)
+    row = randint(0,5)
     column = chr(random.randint(ord('a'), ord('f'))).upper()
     column = LETTERS_TO_NUMBERS[column]
     # lowerchar = string.ascii_lowercase
@@ -81,6 +81,10 @@ def count_hit_ships(board):
     return count
 
 def count_computer_hit_ships(board):
+    """
+    This will be the count for the computer, if they hit all ships first
+    game over
+    """
     count = 0
     for row in board:
         for column in row:
@@ -107,22 +111,24 @@ def play_game():
         row, column = user_guess()
         if GUESS_BOARD[row][column] == "~":
             print("You guessed that one already.")
+            continue
         elif HIDDEN_BOARD[row][column] == "X":
             print("HIT!")
             GUESS_BOARD[row][column] = "X" 
             turns -= 1
         else:
-            print("MISS!")
+            print("YOU MISSED!")
             GUESS_BOARD[row][column] = "~"   
             turns -= 1
-        if count_hit_ships(GUESS_BOARD) == 5:
-            print("You hit all 5 ships! CONGRATULATIONS!")
-            break
         computer_guess_location = computers_guess()
         computer_guess_validate(computer_guess_location)
         print(f'Computer guessed {computer_guess_location}')
 
-        print("You have " + str(turns) + " turn(s) left")
+        player_ship_count = count_hit_ships(GUESS_BOARD)
+        computer_ship_count = count_computer_hit_ships(COMPUTER_HIDDEN_BOARD)
+
+        print(f'Player it ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
+        print("You have " + str(turns) + " turn(s) left \n")
         if turns == 0:
             end_of_game()
 
