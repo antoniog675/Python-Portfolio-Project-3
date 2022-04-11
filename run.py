@@ -173,14 +173,14 @@ def get_user_inputs():
         get_user_inputs()
 
 def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
-    if (player_ship_count and computer_ship_count > 0 and player_ship_count == computer_ship_count) or (turns == 0):
+    if (player_ship_count and computer_ship_count > 0 and player_ship_count == computer_ship_count) and (turns == 0):
         outcome = print("It is a tie!")
-        print(f'Player it ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
+        print(f'Player hit ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
         end_of_game(outcome)
-    elif player_ship_count == 1 or player_ship_count > computer_ship_count:
+    elif player_ship_count == 2 or (player_ship_count > computer_ship_count and turns == 0):
         outcome = print("Congratulations, you beat the computer!")
         end_of_game(outcome)
-    elif computer_ship_count == 1 or computer_ship_count > player_ship_count:
+    elif computer_ship_count == 2 or (computer_ship_count > player_ship_count and turns == 0):
         outcome = print("The Computer has won this round....better luck next time")
         end_of_game(outcome)
 
