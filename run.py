@@ -54,7 +54,7 @@ def user_guess():
             if column in 'ABCDEF':
                 column = LETTERS_TO_NUMBERS[column]
                 break
-        except ValueError:
+        except KeyError:
             print('Enter a valid letter between A-F')
     return row, column
 
@@ -102,7 +102,7 @@ def play_game():
     """
     place_ships(HIDDEN_BOARD) #Computers board with random ships
     place_ships(COMPUTER_HIDDEN_BOARD) #Users board randomly selected for them
-    turns = 0
+    turns = 5
     while turns > 0:
         print('Guess a battleship location')
         print_board(COMPUTER_HIDDEN_BOARD)
@@ -133,20 +133,7 @@ def play_game():
         print(f'Player it ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
         print("You have " + str(turns) + " turn(s) left \n")
         win_lose_or_tie(player_ship_count, computer_ship_count, turns)
-        # if player_ship_count == computer_ship_count:
-        #     print("It is a tie!")
-        #     print(f'Player it ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
-        #     end_of_game()
-        # elif player_ship_count == 1 or player_ship_count > computer_ship_count:
-        #     print("Congratulations, you beat the computer!")
-        #     end_of_game()
-        # elif computer_ship_count == 1 or computer_ship_count > player_ship_count:
-        #     print("The Computer has won this round....better luck next time")
-        #     end_of_game()
-        # else:
-        #     if turns == 0:
-        #         end_of_game()
-
+    
 def computer_guess_validate(board):
     row, column = board
     if COMPUTER_HIDDEN_BOARD[row][column] == "~":
@@ -165,8 +152,8 @@ def computer_guess_validate(board):
     else:
         print("COMPUTER MISSED!")
         COMPUTER_HIDDEN_BOARD[row][column] = "~"   
-    if count_computer_hit_ships(COMPUTER_HIDDEN_BOARD) == 5:
-        print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
+    # if count_computer_hit_ships(COMPUTER_HIDDEN_BOARD) == 5:
+    #     print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
         
 
 def get_user_inputs():
@@ -187,20 +174,17 @@ def get_user_inputs():
 
 def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
     if (player_ship_count and computer_ship_count > 0 and player_ship_count == computer_ship_count) or (turns == 0):
-        print("It is a tie!")
+        outcome = print("It is a tie!")
         print(f'Player it ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
-        end_of_game()
-    elif player_ship_count == 5 or player_ship_count > computer_ship_count:
-        print("Congratulations, you beat the computer!")
-        end_of_game()
-    elif computer_ship_count == 5 or computer_ship_count > player_ship_count:
-        print("The Computer has won this round....better luck next time")
-        end_of_game()
-    else:
-        if turns == 0:
-            end_of_game()
+        end_of_game(outcome)
+    elif player_ship_count == 1 or player_ship_count > computer_ship_count:
+        outcome = print("Congratulations, you beat the computer!")
+        end_of_game(outcome)
+    elif computer_ship_count == 1 or computer_ship_count > player_ship_count:
+        outcome = print("The Computer has won this round....better luck next time")
+        end_of_game(outcome)
 
-def end_of_game():
+def end_of_game(outcome):
     print_board(COMPUTER_HIDDEN_BOARD)
     print_board(GUESS_BOARD)
     play_or_exit = input("Do you wish to play again? Y/N ").upper()
