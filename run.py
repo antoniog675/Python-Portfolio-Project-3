@@ -38,7 +38,6 @@ def user_guess():
     This function will take in the users input for row and column and validate
     it and see if it matches where the ships are placed.
     """
-    # Wrap in try and except to get valid input, will crash if nothin is entered.
     while True:
         try: 
             row = input("Enter the row of the ship 1-6: ")
@@ -112,6 +111,9 @@ def play_game():
         if GUESS_BOARD[row][column] == "~":
             print("You guessed that one already.")
             continue
+        elif GUESS_BOARD[row][column] == "X":
+            print("You guessed that one already.")
+            continue
         elif HIDDEN_BOARD[row][column] == "X":
             print("HIT!")
             GUESS_BOARD[row][column] = "X" 
@@ -135,14 +137,13 @@ def play_game():
 def computer_guess_validate(board):
     row, column = board
     if COMPUTER_HIDDEN_BOARD[row][column] == "~":
-        pass
         print("Getting new value if already guessed")
         get_new_computer_guess = computers_guess()
         computer_guess_validate(get_new_computer_guess)
             # print("You guessed that one already.") Create loop to call computer guess function again
     elif COMPUTER_HIDDEN_BOARD[row][column] == "*":
         print("Getting new value if hit")
-        get_new_computer_guess = computer_guess()
+        get_new_computer_guess = computers_guess()
         computer_guess_validate(get_new_computer_guess)
         pass #Get new computer inputs
     elif COMPUTER_HIDDEN_BOARD[row][column] == "X":
