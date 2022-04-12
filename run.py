@@ -1,20 +1,33 @@
 from random import randint
-import string
 import random
 
-HIDDEN_BOARD = [[" "] * 6 for i in range(6)] #Randomly places ships for user, computer will try and guess this...
-GUESS_BOARD = [[" "] * 6 for i in range(6)] #User guessing board for computers fleet/ so this is basicallt the computers board...
-COMPUTER_HIDDEN_BOARD = [[" "] * 6 for i in range(6)] #Users board, ships hidden, users will be able to see they're own board
-COMPUTER_GUESS_BOARD = [[" "] * 6 for i in range(6)] #Computer will be using this for its guess's
-LETTERS_TO_NUMBERS = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5}
+
+HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
+# Randomly places ships for user, computer will try and guess this.
+
+GUESS_BOARD = [[" "] * 6 for i in range(6)]
+# User guessing board for computers fleet, computers hidden board.
+
+COMPUTER_HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
+# Users board, ships hidden, users will be able to see they're own board
+
+COMPUTER_GUESS_BOARD = [[" "] * 6 for i in range(6)]
+# Computer will be using this for its guess's
+
+LETTERS_TO_NUMBERS = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5}
+
 
 def print_board(board):
+    """
+    This function will print out the board for the user and computer
+    if Statement below will just name the board, which board is which
+    """
     print("-" * 15)
     if board == COMPUTER_HIDDEN_BOARD:
         print(" PLAYER BOARD")
     else:
         if board == GUESS_BOARD:
-            print("  GUESS BOARD")
+            print("COMPUTER BOARD")
     print("-" * 15)
     print("  A B C D E F")
     print("  +-+-+-+-+-+")
@@ -23,23 +36,25 @@ def print_board(board):
         print("%d|%s|" % (row_number, "|".join(row)))
         row_number += 1
 
+
 def place_ships(board):
     """
     This function will place 5 random points on the COMPUTERS board
     """
     for ship in range(5):
-        ship_row, ship_column = randint(0,5), randint(0,5)
+        ship_row, ship_column = randint(0, 5), randint(0, 5)
         while board[ship_row][ship_column] == 'X':
-            ship_row, ship_column = randint(0,5), randint(0,5)
+            ship_row, ship_column = randint(0, 5), randint(0, 5)
         board[ship_row][ship_column] = 'X'
-        
-def user_guess(): 
+
+
+def user_guess():
     """
     This function will take in the users input for row and column and validate
     it and see if it matches where the ships are placed.
     """
     while True:
-        try: 
+        try:
             row = input("Enter the row of the ship 1-6: ")
             if row in '123456':
                 row = int(row) - 1
@@ -49,7 +64,7 @@ def user_guess():
         except ValueError:
             print('Enter a valid number between 1-6')
     while True:
-        try: 
+        try:
             column = input("Enter the column of the ship A-F: ").upper()
             if column in 'ABCDEF':
                 column = LETTERS_TO_NUMBERS[column]
@@ -58,11 +73,17 @@ def user_guess():
             print('Enter a valid letter between A-F')
     return row, column
 
+
 def computers_guess():
-    row = randint(0,5)
+    """
+    This function when called will generate 2 integers which will
+    then be used to place the computers guess on the board
+    """
+    row = randint(0, 5)
     column = chr(random.randint(ord('a'), ord('f'))).upper()
     column = LETTERS_TO_NUMBERS[column]
     return row, column
+
 
 def count_hit_ships(board):
     """
@@ -76,6 +97,7 @@ def count_hit_ships(board):
                 count += 1
     return count
 
+
 def count_computer_hit_ships(board):
     """
     This will be the count for the computer, if they hit all ships first
@@ -88,17 +110,19 @@ def count_computer_hit_ships(board):
                 count += 1
     return count
 
+
 def play_game():
     """
-    This function will start the game, it will place the ships in the hidden board
-    which will be used to compare against the 'GUESS_BOARD', this function calls
-    the user_guess() function to get the users input. After comparing the user input
-    against the hidden board it will either add a splash '~' for a miss or 'X' for a 
-    direct hit. If the same ship location has already been called it will notify the user
-    that that position cannot be called, users will keep their turn.
+    This function will start the game, it will place the ships in the
+    hidden board which will be used to compare against the 'GUESS_BOARD', this
+    function calls the user_guess() function to get the users input. After
+    comparing the user input against the hidden board it will either add
+    a splash '~' for a miss or 'X' for a direct hit. If the same ship
+    location has already been called it will notify the user that that
+    position cannot be called, users will keep their turn.
     """
-    place_ships(HIDDEN_BOARD) #Computers board with random ships
-    place_ships(COMPUTER_HIDDEN_BOARD) #Users board randomly selected for them
+    place_ships(HIDDEN_BOARD)  # Computers board with random ships
+    place_ships(COMPUTER_HIDDEN_BOARD)  # Users ships placed randomly for them
     turns = 10
     while turns > 0:
         print_board(COMPUTER_HIDDEN_BOARD)
@@ -126,18 +150,27 @@ def play_game():
         player_ship_count = count_hit_ships(GUESS_BOARD)
         computer_ship_count = count_computer_hit_ships(COMPUTER_HIDDEN_BOARD)
 
-
-        print(f'Player hit ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
+        print(f'Player hit ships: {player_ship_count}')
+        print(f'Computer hit ships: {computer_ship_count} \n')
         print("You have " + str(turns) + " turn(s) left \n")
-        # Add code so if user enters anything else it will ask them to enter a valid number
-        #prevent the game from crashing if anything apart from Y or N is put through..
+        # Tracks score of the game
+
         if turns == 0:
             win_lose_or_tie(player_ship_count, computer_ship_count, turns)
         elif turns > 0:
             print_next_board = input("Do you want to continue? Y/N: ").upper()
             continue_game(print_next_board)
+        # If turns is greater than 0 game will carry on
+        # If turns hits 0 then winner will be decided
+
 
 def continue_game(x):
+    """
+    This function is used to give users a bit of breathing area,
+    will let them know what is going on and afterwards ask them if
+    they wish to continue, if 'Y' the new board will be printed out
+    with the the hit/missed points, if 'N' it will just close the game
+    """
     if x == "Y":
         pass
     elif x == "N":
@@ -146,25 +179,31 @@ def continue_game(x):
     else:
         return continue_game(input("Please enter Y/N: ").upper())
 
+
 def computer_guess_validate(board):
+    """
+    This function will get the computers guess, if it has already
+    been guessed, 'X', then it will get a new point until it is valid,
+    it will then place a '~' if missed or '*' if hit.
+    """
     row, column = board
     if COMPUTER_HIDDEN_BOARD[row][column] == "~":
         get_new_computer_guess = computers_guess()
         computer_guess_validate(get_new_computer_guess)
-            # print("You guessed that one already.") Create loop to call computer guess function again
     elif COMPUTER_HIDDEN_BOARD[row][column] == "*":
         # Will get another value if random point has already been guessed
         get_new_computer_guess = computers_guess()
         computer_guess_validate(get_new_computer_guess)
-        #Get new computer inputs
+        # Get new computer inputs
     elif COMPUTER_HIDDEN_BOARD[row][column] == "X":
         print("COMPUTER HIT YOUR SHIP")
         COMPUTER_HIDDEN_BOARD[row][column] = "*"
     else:
         print("COMPUTER MISSED!")
-        COMPUTER_HIDDEN_BOARD[row][column] = "~"   
+        COMPUTER_HIDDEN_BOARD[row][column] = "~"
     # if count_computer_hit_ships(COMPUTER_HIDDEN_BOARD) == 5:
-    #     print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
+    # print("COMPUTER HAS WON....BETTER LUCK NEXT TIME...")
+
 
 def get_user_inputs():
     """
@@ -182,10 +221,16 @@ def get_user_inputs():
         print("Uh oh, please enter a valid input")
         get_user_inputs()
 
+
 def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
+    """
+    This function will decide the outcome and print a message announcing the
+    winner or if it is a tie
+    """
     if (player_ship_count == computer_ship_count) and (turns == 0):
         print("It is a tie!")
-        print(f'Player hit ships: {player_ship_count} \nComputer hit ships: {computer_ship_count} \n')
+        print(f'Player hit ships: {player_ship_count}')
+        print(f'Computer hit ships: {computer_ship_count} \n')
         # end_of_game()
     elif player_ship_count == 5 or (player_ship_count > computer_ship_count and turns == 0):
         print("Congratulations, you beat the computer!")
@@ -201,9 +246,15 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
 #     elif play_or_exit == "N":
 #         exit()
 
+
 print("Welcome to Battleships!\n")
 
+
 def start_game():
+    """
+    Starts game
+    """
     get_user_inputs()
+
 
 start_game()
