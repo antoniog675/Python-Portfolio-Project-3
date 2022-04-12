@@ -55,7 +55,7 @@ def user_guess():
     """
     while True:
         try:
-            row = input("Enter the row of the ship 1-6: ")
+            row = input("Enter the row of the ship 1-6: \n")
             if row in '123456':
                 row = int(row) - 1
                 break
@@ -65,7 +65,7 @@ def user_guess():
             print('Enter a valid number between 1-6')
     while True:
         try:
-            column = input("Enter the column of the ship A-F: ").upper()
+            column = input("Enter the column of the ship A-F: \n").upper()
             if column in 'ABCDEF':
                 column = LETTERS_TO_NUMBERS[column]
                 break
@@ -158,7 +158,7 @@ def play_game():
         if turns == 0:
             win_lose_or_tie(player_ship_count, computer_ship_count, turns)
         elif turns > 0:
-            print_next_board = input("Do you want to continue? Y/N: ").upper()
+            print_next_board = input("Do you want to continue? Y/N:\n").upper()
             continue_game(print_next_board)
         # If turns is greater than 0 game will carry on
         # If turns hits 0 then winner will be decided
@@ -177,7 +177,7 @@ def continue_game(x):
         print("GAME OVER")
         exit()
     else:
-        return continue_game(input("Please enter Y/N: ").upper())
+        return continue_game(input("Please enter Y/N: \n").upper())
 
 
 def computer_guess_validate(board):
@@ -210,9 +210,9 @@ def get_user_inputs():
     This function is going to get the users input to run the main game, if
     will keep looping if user give anything else except a 'Y' or 'N'
     """
-    user_name = input("What is your name?: ")
+    user_name = input("What is your name?: \n")
     print(f"Welcome {user_name}, are you ready to play the game?")
-    start_game = input("Enter 'Y' to begin or 'N' to exit: ").upper()
+    start_game = input("Enter 'Y' to begin or 'N' to exit:\n ").upper()
     if start_game == "Y":
         play_game()
     elif start_game == "N":
@@ -232,10 +232,12 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
         print(f'Player hit ships: {player_ship_count}')
         print(f'Computer hit ships: {computer_ship_count} \n')
         # end_of_game()
-    elif player_ship_count == 5 or (player_ship_count > computer_ship_count and turns == 0):
+    elif(player_ship_count == 5)\
+            or (player_ship_count > computer_ship_count and turns == 0):
         print("Congratulations, you beat the computer!")
         # end_of_game()
-    elif computer_ship_count == 5 or (computer_ship_count > player_ship_count and turns == 0):
+    elif computer_ship_count == 5 \
+            or (computer_ship_count > player_ship_count and turns == 0):
         print("The Computer has won this round....better luck next time")
         # end_of_game()
 # def end_of_game():
@@ -250,11 +252,4 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
 print("Welcome to Battleships!\n")
 
 
-def start_game():
-    """
-    Starts game
-    """
-    get_user_inputs()
-
-
-start_game()
+get_user_inputs()
