@@ -2,7 +2,10 @@
 
 <p>BATTLESHIPS is a terminal game created using Python and deployed on Heroku</p>
 <p>This is a very basic version of the actual game, 1 ship takes up 1 point of the board, user will play against the computer, scores will be tracked for the user and a winner is decided when all ships are hit or if user and computer run out of turns.
-<!-- Add image of deployed game with a live link-->
+
+[Live Link of my website](https://antonio-battleships.herokuapp.com/)
+
+![](assets/imagess/amiresponsive_python.jpg)
 
 ## How the game works
 <hr>
