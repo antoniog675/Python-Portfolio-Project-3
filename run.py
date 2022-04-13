@@ -151,6 +151,7 @@ def play_game():
         player_ship_count = count_hit_ships(GUESS_BOARD)
         computer_ship_count = count_computer_hit_ships(COMPUTER_HIDDEN_BOARD)
         win_lose_or_tie(player_ship_count, computer_ship_count, turns)
+        os.system('clear')
 
 
 def continue_game(x):
@@ -161,7 +162,7 @@ def continue_game(x):
     with the the hit/missed points, if 'N' it will just close the game
     """
     if x == "Y":
-        os.system('clear')
+        pass
     elif x == "N":
         print("GAME OVER, YOU QUIT THE GAME")
         sys.exit()
@@ -210,7 +211,7 @@ def get_user_inputs():
 def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
     """
     This function will decide the outcome and print a message announcing the
-    winner or if it is a tie
+    winner or if it is a tie or continue with the game
     """
     if player_ship_count or computer_ship_count != 5:
         print(f'Player hit ships: {player_ship_count}')
@@ -234,8 +235,8 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
                 sys.exit()
         print("You have " + str(turns) + " turn(s) left \n")
         print_new_board = input("Do you want to continue? Y/N: \n").upper()
-        os.system('clear')
         continue_game(print_new_board)
+        
     # else: statement for if both computer and player get 5 at the same time
 
 def results():
