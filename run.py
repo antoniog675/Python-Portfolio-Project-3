@@ -1,6 +1,7 @@
 from random import randint
 import random
 
+# NEW_BRANCH
 
 HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
 # Randomly places ships for user, computer will try and guess this.
