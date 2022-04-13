@@ -58,7 +58,7 @@ def user_guess():
     """
     while True:
         try:
-            row = input("Enter the row of the ship 1-6: ")
+            row = input("Enter the row of the ship 1-6: \n")
             if row in '123456':
                 row = int(row) - 1
                 break
@@ -66,7 +66,7 @@ def user_guess():
             print('Enter a valid number between 1-6')
     while True:
         try:
-            column = input("Enter the column of the ship A-F: ").upper()
+            column = input("Enter the column of the ship A-F: \n").upper()
             if column in 'ABCDEF':
                 column = LETTERS_TO_NUMBERS[column]
                 break
@@ -166,7 +166,7 @@ def continue_game(x):
         print("GAME OVER, YOU QUIT THE GAME")
         sys.exit()
     else:
-        return continue_game(input("Please enter Y/N: ").upper())
+        return continue_game(input("Please enter Y/N: \n").upper())
 
 
 def computer_guess_validate(board):
@@ -193,9 +193,9 @@ def get_user_inputs():
     This function is going to get the users input to run the main game, if
     will keep looping if user give anything else except a 'Y' or 'N'
     """
-    player_name = input("What is your name?: ")
+    player_name = input("What is your name?: \n")
     print(f"Welcome {player_name}, are you ready to play the game?")
-    start_game = input("Enter 'Y' to begin or 'N' to exit: ").upper()
+    start_game = input("Enter 'Y' to begin or 'N' to exit: \n").upper()
     if start_game == "Y":
         play_game()
     elif start_game == "N":
@@ -232,7 +232,7 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
                 results()
                 sys.exit()
         print("You have " + str(turns) + " turn(s) left \n")
-        print_new_board = input("Do you want to continue? Y/N:").upper()
+        print_new_board = input("Do you want to continue? Y/N: \n").upper()
         os.system('clear')
         continue_game(print_new_board)
     # else: statement for if both computer and player get 5 at the same time
