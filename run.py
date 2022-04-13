@@ -154,7 +154,6 @@ def play_game():
 
         player_ship_count = count_hit_ships(GUESS_BOARD)
         computer_ship_count = count_computer_hit_ships(COMPUTER_HIDDEN_BOARD)
-
         win_lose_or_tie(player_ship_count, computer_ship_count, turns)
 
 
@@ -224,20 +223,29 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
             if(player_ship_count == 5)\
                     or (player_ship_count > computer_ship_count and turns == 0):
                 print("Congratulations, you beat the computer!")
+                results()
                 sys.exit()
             elif computer_ship_count == 5 \
                     or (computer_ship_count > player_ship_count and turns == 0):
                 print("The Computer has won this round....better luck next time")
+                results()
                 sys.exit()
             elif (player_ship_count == computer_ship_count) and (turns == 0):
                 print("It is a tie!")
                 print(f'Player hit ships: {player_ship_count}')
                 print(f'Computer hit ships: {computer_ship_count} \n')
+                results()
                 sys.exit()
         print("You have " + str(turns) + " turn(s) left \n")
         print_new_board = input("Do you want to continue? Y/N:").upper()
         continue_game(print_new_board)
     # else: statement for if both computer and player get 5 at the same time
+
+
+def results():
+    print("END RESULTS")
+    print_board(COMPUTER_HIDDEN_BOARD)
+    print_board(GUESS_BOARD)
 
 
 print("Welcome to Battleships!\n")
