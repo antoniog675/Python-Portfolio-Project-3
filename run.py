@@ -123,7 +123,7 @@ def play_game():
     position cannot be called, users will keep their turn.
     """
     place_ships(HIDDEN_BOARD)  # Computers board with random ships
-    place_ships(COMPUTER_HIDDEN_BOARD)  # Players ships placed randomly for them
+    place_ships(COMPUTER_HIDDEN_BOARD)  # Players ships placed randomly
     turns = 10
     while turns > 0:
         print_board(COMPUTER_HIDDEN_BOARD)
@@ -193,8 +193,8 @@ def get_user_inputs():
     This function is going to get the users input to run the main game, if
     will keep looping if user give anything else except a 'Y' or 'N'
     """
-    user_name = input("What is your name?: ")
-    print(f"Welcome {user_name}, are you ready to play the game?")
+    player_name = input("What is your name?: ")
+    print(f"Welcome {player_name}, are you ready to play the game?")
     start_game = input("Enter 'Y' to begin or 'N' to exit: ").upper()
     if start_game == "Y":
         play_game()
