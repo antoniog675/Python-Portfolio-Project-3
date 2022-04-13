@@ -2,16 +2,13 @@ from random import randint
 import random
 import sys
 import os
-
 # NEW_BRANCH
-
 HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
-# This will create a board for the computer where their ships will be placed
+# This will create a board for the computer where their ships will be placeddd
 
 GUESS_BOARD = [[" "] * 6 for i in range(6)]
-# This is users guessing board, so on the terminal it will 
-# appear as computer board, as we are trying to guess THEIR board,
-# which is players guessing board
+# This is users guessing board, so on the terminal it will appear as computer
+# board, as we are trying to guess THEIR board, which is players guessing board
 
 COMPUTER_HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
 # This will be players board, were they will be able to see where their
@@ -200,7 +197,6 @@ def get_user_inputs():
     print(f"Welcome {user_name}, are you ready to play the game?")
     start_game = input("Enter 'Y' to begin or 'N' to exit: ").upper()
     if start_game == "Y":
-        os.system('clear')
         play_game()
     elif start_game == "N":
         print("You have left the game...")
@@ -237,9 +233,9 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
                 sys.exit()
         print("You have " + str(turns) + " turn(s) left \n")
         print_new_board = input("Do you want to continue? Y/N:").upper()
+        os.system('clear')
         continue_game(print_new_board)
     # else: statement for if both computer and player get 5 at the same time
-
 
 def results():
     print("END RESULTS")
@@ -248,6 +244,4 @@ def results():
 
 
 print("Welcome to Battleships!\n")
-
-
 get_user_inputs()
