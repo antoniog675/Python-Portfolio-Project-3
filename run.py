@@ -1,6 +1,7 @@
 from random import randint
 import random
-import sys, os
+import sys
+import os
 
 # NEW_BRANCH
 
@@ -64,8 +65,6 @@ def user_guess():
             if row in '123456':
                 row = int(row) - 1
                 break
-            elif row != '123456':
-                print("Enter a valid number between 1-6")
         except ValueError:
             print('Enter a valid number between 1-6')
     while True:
