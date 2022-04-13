@@ -5,16 +5,19 @@ import sys, os
 # NEW_BRANCH
 
 HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
-# Randomly places ships for user, computer will try and guess this.
+# This will create a board for the computer where their ships will be placed
 
 GUESS_BOARD = [[" "] * 6 for i in range(6)]
-# User guessing board for computers fleet, computers hidden board.
+# This is users guessing board, so on the terminal it will 
+# appear as computer board, as we are trying to guess THEIR board,
+# which is players guessing board
 
 COMPUTER_HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
-# Users board, ships hidden, users will be able to see they're own board
+# This will be players board, were they will be able to see where their
+# own ships are placed
 
 COMPUTER_GUESS_BOARD = [[" "] * 6 for i in range(6)]
-# Computer will be using this for its guess's
+# This is where the computer will placed their c
 
 LETTERS_TO_NUMBERS = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5}
 
@@ -124,7 +127,7 @@ def play_game():
     position cannot be called, users will keep their turn.
     """
     place_ships(HIDDEN_BOARD)  # Computers board with random ships
-    place_ships(COMPUTER_HIDDEN_BOARD)  # Users ships placed randomly for them
+    place_ships(COMPUTER_HIDDEN_BOARD)  # Players ships placed randomly for them
     turns = 10
     while turns > 0:
         print_board(COMPUTER_HIDDEN_BOARD)
@@ -164,7 +167,7 @@ def continue_game(x):
     if x == "Y":
         os.system('clear')
     elif x == "N":
-        print("GAME OVER YOU QUIT THE GAME")
+        print("GAME OVER, YOU QUIT THE GAME")
         sys.exit()
     else:
         return continue_game(input("Please enter Y/N: ").upper())
@@ -198,9 +201,10 @@ def get_user_inputs():
     print(f"Welcome {user_name}, are you ready to play the game?")
     start_game = input("Enter 'Y' to begin or 'N' to exit: ").upper()
     if start_game == "Y":
+        os.system('clear')
         play_game()
     elif start_game == "N":
-        print("You have left the game")
+        print("You have left the game...")
         sys.exit()
     else:
         print("Uh oh, please enter a valid input")
