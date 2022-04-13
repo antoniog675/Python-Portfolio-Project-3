@@ -216,6 +216,7 @@ def get_user_inputs():
     if start_game == "Y":
         play_game()
     elif start_game == "N":
+        print("You have left the game")
         exit()
     else:
         print("Uh oh, please enter a valid input")
@@ -231,23 +232,15 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
         print("It is a tie!")
         print(f'Player hit ships: {player_ship_count}')
         print(f'Computer hit ships: {computer_ship_count} \n')
-        # end_of_game()
+
     elif(player_ship_count == 5)\
             or (player_ship_count > computer_ship_count and turns == 0):
         print("Congratulations, you beat the computer!")
-        # end_of_game()
+
     elif computer_ship_count == 5 \
             or (computer_ship_count > player_ship_count and turns == 0):
         print("The Computer has won this round....better luck next time")
-        # end_of_game()
-# def end_of_game():
-#     play_or_exit = input("Do you wish to play again? Y/N ").upper()
-#     if play_or_exit == "Y":
-#         #Clear board and then start all of it again
-#         start_game()
-#     elif play_or_exit == "N":
-#         exit()
-
+    
 
 print("Welcome to Battleships!\n")
 

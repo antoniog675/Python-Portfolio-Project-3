@@ -1,1 +1,1 @@
-# Your requirements go here
+new-package==0.0.1
