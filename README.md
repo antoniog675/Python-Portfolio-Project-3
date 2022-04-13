@@ -23,5 +23,51 @@ If user already guessed the location the game will not continue until it enters 
 </ol>
 
 ## Features
+<hr>
+
+![](assets/imagess/battleships_introduction.jpg)
+![](assets/imagess/press_no_leave_start.jpg)
+
+<p>In this part of the game it will welcome the player to the game and ask for their name, and then will ask the player if they are ready to play, when they say 'Y' a board will be generated with 5 ships placed in random locations</p>
+<p>If user selects no it will exit the game with a message</p>
+
+
+![](assets/imagess/player_computer_boards_start.jpg)
+
+<p>In the image above is how the the terminal is going to look for the majority of the game, the 'X' marks the users ships placed on their board, and the computer board is blank as we are going to try and guess those locations</p>
+<p>Right below the two boards the game is requesting a row, in a number, and a column in a character to get the location of the players guess on where the computers ships are hidden</p>
+
+## Input validation and Error messages
+<hr>
+
+![](assets/imagess/enter_valid_num.jpg)
+
+<p>On the image above the game will not go on unless an integer is put in</p>
+
+![](assets/imagess/enter_number_in_range.jpg)
+
+<p>If the player guesses a number out of range then the same thing will happen as above, player will be asked to put a valid input</p>
+
+![](assets/imagess/enter_valid_letter.jpg)
+
+<p>On the image above is an image of the game asking the player to enter a valid character to be able to find the position</p>
+
+## Game updates and NEW ship placement
+<hr>
+
+![](assets/imagess/game_updates_score.jpg)
+
+<ul>
+<li>When user puts their guess through the computer, it will see if the player hit a ship, the computer will guess as well and will check if their guess hit our ship.</li>
+<li>We will also update users with how many turns they have left for the game.</li>
+<li>The game will ask players if they wish to continue, if the select 'Y', the update board will be printed and we will ask for their new guess.</li>
+<li>If the player says 'N' then the game will shut down</li>
+</ul>
+
+![](assets/imagess/new_board%20with%20locations.jpg)
+
+<ul>
+<li>Updated board is now printed, '*' on players board marks a computer hitting the players ships, the '~' on both player and computer board will mark misses. The 'X' on the computers board is marking a HIT for the player</li>
+</ul>
 
 
