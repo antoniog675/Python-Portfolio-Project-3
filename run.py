@@ -134,6 +134,9 @@ def play_game():
         print_board(GUESS_BOARD)
         print('\nGuess a battleship location')
         row, column = user_guess()
+        os.system('clear')
+        print_board(COMPUTER_HIDDEN_BOARD)
+        print_board(GUESS_BOARD)
         if GUESS_BOARD[row][column] == "~" or GUESS_BOARD[row][column] == "X":
             os.system('clear')
             print("\nYou already guessed that point!")
