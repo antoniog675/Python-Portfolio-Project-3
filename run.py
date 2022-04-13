@@ -197,6 +197,7 @@ def get_user_inputs():
     print(f"Welcome {player_name}, are you ready to play the game?")
     start_game = input("Enter 'Y' to begin or 'N' to exit: \n").upper()
     if start_game == "Y":
+        os.system('clear')
         play_game()
     elif start_game == "N":
         print("You have left the game...")
