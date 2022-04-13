@@ -1,6 +1,6 @@
 from random import randint
 import random
-
+import sys
 
 HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
 # Randomly places ships for user, computer will try and guess this.
@@ -59,8 +59,6 @@ def user_guess():
             if row in '123456':
                 row = int(row) - 1
                 break
-            elif row != '123456':
-                print("Enter a valid number between 1-6")
         except ValueError:
             print('Enter a valid number between 1-6')
     while True:
@@ -155,7 +153,7 @@ def play_game():
         print("You have " + str(turns) + " turn(s) left \n")
         # Tracks score of the game
 
-        if turns == 0:
+        if (turns == 0) or (player_ship_count or computer_ship_count == 5):
             win_lose_or_tie(player_ship_count, computer_ship_count, turns)
         elif turns > 0:
             print_next_board = input("Do you want to continue? Y/N:\n").upper()
@@ -232,15 +230,15 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
         print("It is a tie!")
         print(f'Player hit ships: {player_ship_count}')
         print(f'Computer hit ships: {computer_ship_count} \n')
-
+        sys.exit()
     elif(player_ship_count == 5)\
             or (player_ship_count > computer_ship_count and turns == 0):
         print("Congratulations, you beat the computer!")
-
+        sys.exit()
     elif computer_ship_count == 5 \
             or (computer_ship_count > player_ship_count and turns == 0):
         print("The Computer has won this round....better luck next time")
-    
+        sys.exit()
 
 print("Welcome to Battleships!\n")
 
