@@ -151,7 +151,6 @@ def play_game():
         player_ship_count = count_hit_ships(GUESS_BOARD)
         computer_ship_count = count_computer_hit_ships(COMPUTER_HIDDEN_BOARD)
         win_lose_or_tie(player_ship_count, computer_ship_count, turns)
-        os.system('clear')
 
 
 def continue_game(x):
@@ -162,7 +161,7 @@ def continue_game(x):
     with the the hit/missed points, if 'N' it will just close the game
     """
     if x == "Y":
-        pass
+        os.system('clear')
     elif x == "N":
         print("GAME OVER, YOU QUIT THE GAME")
         sys.exit()
