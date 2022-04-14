@@ -213,7 +213,6 @@ def get_user_inputs():
     print(f"Welcome {user_name}, are you ready to play the game?")
     start_game = input("Enter 'Y' to begin or 'N' to exit:\n ").upper()
     if start_game == "Y":
-        os.system('cls')
         play_game()
     elif start_game == "N":
         print("You have left the game")
