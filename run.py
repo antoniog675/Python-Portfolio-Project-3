@@ -131,9 +131,9 @@ def play_game():
         print_board(GUESS_BOARD)
         print('\nGuess a battleship location')
         row, column = user_guess()
-        os.system('clear')
+        clear_screen()
         if GUESS_BOARD[row][column] == "~" or GUESS_BOARD[row][column] == "X":
-            os.system('clear')
+            clear_screen()
             print("\nYou already guessed that point!")
             print("Guess a again")
             continue
@@ -162,7 +162,7 @@ def continue_game(x):
     with the the hit/missed points, if 'N' it will just close the game
     """
     if x == "Y":
-        os.system('clear')
+        clear_screen()
     elif x == "N":
         print("GAME OVER, YOU QUIT THE GAME")
         sys.exit()
@@ -198,7 +198,7 @@ def get_user_inputs():
     print(f"Welcome {player_name}, are you ready to play the game?")
     start_game = input("Enter 'Y' to begin or 'N' to exit: \n").upper()
     if start_game == "Y":
-        os.system('clear')
+        clear_screen()
         play_game()
     elif start_game == "N":
         print("You have left the game...")
@@ -206,6 +206,11 @@ def get_user_inputs():
     else:
         print("Uh oh, please enter a valid input")
         get_user_inputs()
+
+def clear_screen():
+    os.system('clear')
+    os.system('reset')
+
 
 
 def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
