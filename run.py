@@ -119,7 +119,6 @@ def play_game():
     place_ships(COMPUTER_HIDDEN_BOARD)  # Users ships placed randomly for them
     turns = 10
     while turns > 0:
-        print("Game goes on")
         print_board(COMPUTER_HIDDEN_BOARD)
         print_board(GUESS_BOARD)
         print('\nGuess a battleship location')
@@ -179,11 +178,7 @@ def computer_guess_validate(board):
     it will then place a '~' if missed or '*' if hit.
     """
     row, column = board
-    if COMPUTER_HIDDEN_BOARD[row][column] == "~":
-        get_new_computer_guess = computers_guess()
-        computer_guess_validate(get_new_computer_guess)
-    elif COMPUTER_HIDDEN_BOARD[row][column] == "*":
-        # Will get another value if random point has already been guessed
+    if COMPUTER_HIDDEN_BOARD[row][column] == "~" or COMPUTER_HIDDEN_BOARD[row][column] == "*":
         get_new_computer_guess = computers_guess()
         computer_guess_validate(get_new_computer_guess)
         # Get new computer inputs
