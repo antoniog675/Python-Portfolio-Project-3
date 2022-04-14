@@ -2,6 +2,7 @@ from random import randint
 import random
 import sys
 import os
+
 # NEW_BRANCH
 HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
 # This will create a board for the computer where their ships will be placeddd
