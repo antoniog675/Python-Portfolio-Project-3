@@ -1,6 +1,7 @@
 from random import randint
 import random
 import sys
+import os
 
 HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
 # Randomly places ships for user, computer will try and guess this.
@@ -212,6 +213,7 @@ def get_user_inputs():
     print(f"Welcome {user_name}, are you ready to play the game?")
     start_game = input("Enter 'Y' to begin or 'N' to exit:\n ").upper()
     if start_game == "Y":
+        os.system('cls')
         play_game()
     elif start_game == "N":
         print("You have left the game")
@@ -239,6 +241,7 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
             or (computer_ship_count > player_ship_count and turns == 0):
         print("The Computer has won this round....better luck next time")
         sys.exit()
+
 
 print("Welcome to Battleships!\n")
 
