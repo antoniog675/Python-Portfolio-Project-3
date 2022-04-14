@@ -37,6 +37,16 @@ If user already guessed the location the game will not continue until it enters 
 <p>In the image above is how the the terminal is going to look for the majority of the game, the 'X' marks the users ships placed on their board, and the computer board is blank as we are going to try and guess those locations</p>
 <p>Right below the two boards the game is requesting a row, in a number, and a column in a character to get the location of the players guess on where the computers ships are hidden</p>
 
+<details>
+
+<summary> <h2>More Features of the game</h2> </summary>
+
+![](assets/imagess/same_location_message.jpg)
+
+![](assets/imagess/player_miss_comp_hit.jpg)
+</details>
+<hr>
+
 ## Input validation and Error messages
 <hr>
 
@@ -69,5 +79,33 @@ If user already guessed the location the game will not continue until it enters 
 <ul>
 <li>Updated board is now printed, '*' on players board marks a computer hitting the players ships, the '~' on both player and computer board will mark misses. The 'X' on the computers board is marking a HIT for the player</li>
 </ul>
+
+## Game outcome
+<hr>
+
+<ul>
+
+![](assets/imagess/end_results.jpg)
+
+<li>In this outcome when both players have run out of turns it will compare the number of ships each player hit, player with the higher hit ship count wins, in this instance the computer won, if the user has a higher hit count then the message "Congratulations, you beat the computer!" will be diplayed and the game will end.</li>
+<li>The game will show the number of hit ships for the player and computer and will print out the final board of all the hit ships and missed ships like the picture below.</li>
+
+![](assets/imagess/end_results_2.jpg)
+
+
+![](assets/imagess/tie_outcome_battleships.jpg)
+<li>If both players have the same scores then it will be a tie, game will end.</li>
+<li></li>
+
+![]()
+
+<li></li>
+<li></li>
+
+</ul>
+
+## Future goals
+
+Add the end of the game reveal computers ships
 
 
