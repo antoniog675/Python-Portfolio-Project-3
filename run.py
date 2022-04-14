@@ -230,7 +230,6 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
         sys.exit()
 
 
-print("Welcome to Battleships!\n")
-
-
-get_user_inputs()
+if __name__ == '__main__':
+    print("Welcome to Battleships!\n")
+    get_user_inputs()
