@@ -138,10 +138,12 @@ def play_game():
             print("Guess a again")
             continue
         elif HIDDEN_BOARD[row][column] == "X":
+            clear_screen()
             print("\nHIT!")
             GUESS_BOARD[row][column] = "X"
             turns -= 1
         else:
+            clear_screen()
             print("\nYOU MISSED!")
             GUESS_BOARD[row][column] = "~"
             turns -= 1
