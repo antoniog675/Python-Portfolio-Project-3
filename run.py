@@ -84,30 +84,50 @@ def computers_guess():
     return row, column
 
 
+# def count_hit_ships(board):
+#     """
+#     This function will keep track of the hit ships, if marked with 'X'
+#     it will increment the count, if not it will stay the same.
+#     """
+#     count = 0
+#     for row in board:
+#         for column in row:
+#             if column == 'X':
+#                 count += 1
+#     return count
+
+
+# def count_computer_hit_ships(board):
+#     """
+#     This will be the count for the computer, if they hit all ships first
+#     game over
+#     """
+#     count = 0
+#     for row in board:
+#         for column in row:
+#             if column == '*':
+#                 count += 1
+#     return count
+
 def count_hit_ships(board):
     """
-    This function will keep track of the hit ships, if marked with 'X'
-    it will increment the count, if not it will stay the same.
+    Count each ship hit for computer and player
     """
-    count = 0
-    for row in board:
-        for column in row:
-            if column == 'X':
-                count += 1
-    return count
-
-
-def count_computer_hit_ships(board):
-    """
-    This will be the count for the computer, if they hit all ships first
-    game over
-    """
-    count = 0
-    for row in board:
-        for column in row:
-            if column == '*':
-                count += 1
-    return count
+    if board == GUESS_BOARD:
+        count = 0
+        for row in board:
+            for column in row:
+                if column == 'X':
+                    count += 1
+            return count
+    else:
+        if board == COMPUTER_HIDDEN_BOARD:
+            count = 0
+            for row in board:
+                for column in row:
+                    if column == '*':
+                        count += 1
+            return count
 
 
 def play_game():
@@ -148,7 +168,7 @@ def play_game():
         print(f'Computer guessed {computer_guess_location}\n')
 
         player_ship_count = count_hit_ships(GUESS_BOARD)
-        computer_ship_count = count_computer_hit_ships(COMPUTER_HIDDEN_BOARD)
+        computer_ship_count = count_hit_ships(COMPUTER_HIDDEN_BOARD)
 
         print(f'Player hit ships: {player_ship_count}')
         print(f'Computer hit ships: {computer_ship_count} \n')
