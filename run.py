@@ -42,7 +42,7 @@ def place_ships(board):
     """
     This function will place 5 random points on the COMPUTERS board
     """
-    for ship in range(5):
+    for _ in range(5):
         ship_row, ship_column = randint(0, 5), randint(0, 5)
         while board[ship_row][ship_column] == 'X':
             ship_row, ship_column = randint(0, 5), randint(0, 5)
@@ -84,31 +84,6 @@ def computers_guess():
     return row, column
 
 
-# def count_hit_ships(board):
-#     """
-#     This function will keep track of the hit ships, if marked with 'X'
-#     it will increment the count, if not it will stay the same.
-#     """
-#     count = 0
-#     for row in board:
-#         for column in row:
-#             if column == 'X':
-#                 count += 1
-#     return count
-
-
-# def count_computer_hit_ships(board):
-#     """
-#     This will be the count for the computer, if they hit all ships first
-#     game over
-#     """
-#     count = 0
-#     for row in board:
-#         for column in row:
-#             if column == '*':
-#                 count += 1
-#     return count
-
 def count_hit_ships(board):
     """
     Count each ship hit for computer and player
@@ -149,13 +124,10 @@ def play_game():
         print_board(GUESS_BOARD)
         print('\nGuess a battleship location')
         row, column = user_guess()
-        if GUESS_BOARD[row][column] == "~":
+        if GUESS_BOARD[row][column] == "~" or GUESS_BOARD[row][column] == "X":
             print("You guessed that one already.")
             continue
-        elif GUESS_BOARD[row][column] == "X":
-            print("You guessed that one already.")
-            continue
-        elif HIDDEN_BOARD[row][column] == "X":
+        if HIDDEN_BOARD[row][column] == "X":
             print("\nHIT!")
             GUESS_BOARD[row][column] = "X"
             turns -= 1
