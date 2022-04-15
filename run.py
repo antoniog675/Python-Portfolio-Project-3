@@ -119,7 +119,6 @@ def play_game():
     place_ships(COMPUTER_HIDDEN_BOARD)  # Users ships placed randomly for them
     turns = 10
     while turns > 0:
-        print_board(HIDDEN_BOARD)
         print_board(COMPUTER_HIDDEN_BOARD)
         print_board(GUESS_BOARD)
         print('\nGuess a battleship location')
