@@ -225,6 +225,12 @@ def clear_screen():
     os.system('clear')
 
 
+def game_results():
+    print("END RESULTS")
+    print_board(COMPUTER_HIDDEN_BOARD)
+    print_board(GUESS_BOARD)
+
+
 def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
     """
     This function will decide the outcome and print a message announcing the
@@ -234,14 +240,17 @@ def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
         print("It is a tie!")
         print(f'Player hit ships: {player_ship_count}')
         print(f'Computer hit ships: {computer_ship_count} \n')
+        game_results()
         sys.exit()
     elif(player_ship_count == 5)\
             or (player_ship_count > computer_ship_count and turns == 0):
         print("Congratulations, you beat the computer!")
+        game_results()
         sys.exit()
     elif computer_ship_count == 5 \
             or (computer_ship_count > player_ship_count and turns == 0):
         print("The Computer has won this round....better luck next time")
+        game_results()
         sys.exit()
 
 
