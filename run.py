@@ -1,3 +1,7 @@
+"""
+This is the battleship game created using python for my portfolio project 3
+"""
+
 from random import randint
 import random
 import sys
@@ -145,29 +149,30 @@ def play_game():
 
         print(f'Player hit ships: {player_ship_count}')
         print(f'Computer hit ships: {computer_ship_count} \n')
-        print("You have " + str(turns) + " turn(s) left") # Tracks score of the game
+        print("You have " + str(turns) + " turn(s) left")
+        # Tracks score of the game
         if (turns == 0) or (player_ship_count or computer_ship_count == 5):
             win_lose_or_tie(player_ship_count, computer_ship_count, turns)
         if turns > 0:
-            print_next_board = input("Do you want to continue? Y/N: \n").upper()
+            print_next_board = input("Do you want to continue? Y/N: ").upper()
             continue_game(print_next_board)
             clear_screen()
         # If turns is greater than 0 game will carry on
         # If turns hits 0 then winner will be decided
 
 
-def continue_game(x):
+def continue_game(value):
     """
     This function is used to give users a bit of breathing area,
     will let them know what is going on and afterwards ask them if
     they wish to continue, if 'Y' the new board will be printed out
     with the the hit/missed points, if 'N' it will just close the game
     """
-    if x == "Y":
+    if value == "Y":
         pass
-    elif x == "N":
+    elif value == "N":
         print("GAME OVER, you left the game!")
-        exit()
+        sys.exit()
     else:
         return continue_game(input("Please enter Y/N: \n").upper())
 
@@ -179,7 +184,8 @@ def computer_guess_validate(board):
     it will then place a '~' if missed or '*' if hit.
     """
     row, column = board
-    if COMPUTER_HIDDEN_BOARD[row][column] == "~" or COMPUTER_HIDDEN_BOARD[row][column] == "*":
+    if COMPUTER_HIDDEN_BOARD[row][column] == "~"\
+            or COMPUTER_HIDDEN_BOARD[row][column] == "*":
         get_new_computer_guess = computers_guess()
         computer_guess_validate(get_new_computer_guess)
         # Get new computer inputs
@@ -214,6 +220,9 @@ def get_user_inputs():
 
 
 def clear_screen():
+    """
+    Clear screen
+    """
     os.system('clear')
 
 
