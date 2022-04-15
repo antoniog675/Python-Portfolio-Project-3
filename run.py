@@ -232,6 +232,9 @@ def clear_screen():
 
 
 def game_results():
+    """
+    Show the boards one last time to see all hit and missed location
+    """
     print("END RESULTS")
     print_board(COMPUTER_HIDDEN_BOARD)
     print_board(GUESS_BOARD)
