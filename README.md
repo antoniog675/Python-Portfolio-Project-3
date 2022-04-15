@@ -95,17 +95,65 @@ If user already guessed the location the game will not continue until it enters 
 
 ![](assets/imagess/tie_outcome_battleships.jpg)
 <li>If both players have the same scores then it will be a tie, game will end.</li>
-<li></li>
-
-![]()
-
-<li></li>
-<li></li>
 
 </ul>
 
-## Future goals
 
-Add the end of the game reveal computers ships
+## Testing
+
+<ul>
+<li>Tested my code using a PEP8 linter and I got several warnings for my code, and after going through my code and fixing these warnings I passed my code through the PEP8 linter again and got no warnings.</li>
+
+![](assets/imagess/code_through_PEP8%20warning_errors.jpg)
+
+![](assets/imagess/PEP8_VALIDATE_new.jpg)
+
+</ul>
+
+
+### Bugs
+
+<ul>Solved bugs
+<li>The inputs were a big issue, because user has to enter a Y or N to continue with the game, but when users entered nothing it causes the game to break and through errors, I sorted this out by my code throuing an error message to enter a valid input, and call the use_inputs() function again so it goes over and over until they choose a valid input</li>
+<li>Another bug was calling the continue_game() function, it was not working close to the end of the project, and it ended up just being an indentation problem and that got sorted out.</li>
+</ul>
+
+<ul>Unsolved bugs
+<li>The one bug that really challanged me and burned up a lot of my time was this bug here in the image below, after the player guesses, we ask them if they want to continue and this is suppose to wipe the previous boards, information and load up the new updated boards. But when I deployed my game on the heroku app it seemed the print out the "PLAYER BOARD" the same amount of turns I had. On the gitpod terminal it did not have this issue, after trying to debug my code I tried gettin help and we think it is an issue with the code istitue template. </li>
+
+![](assets/imagess/player_board%20bug.jpg)
+</ul>
+
+### Validator testing
+
+<ul><li>No warning errors from PEP8online.com</li></ul>
+
+## Deployment
+
+<ul>How the project was deployed
+<li>Go to the Heroku app and create and account and/or create new app.</li>
+<li>Set the buildpacks to Python and THEN Node.JS</li>
+<li>Go to 'configure var' on the settings option and set KEY: PORT AND VALUE: 8000</li>
+<li>Go to 'deploy' on the Heroku app and link the Heroku app to your GitHub </li>
+<li>Select your repository that you want, and branch if you have more then one, if not then (main) will be fine</li>
+<li>You can choose either automatic or manual deploy and select 'Delpoy Branch'</li>
+</ul>
+
+## Credits and Acknowledgments 
+
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+
+## Future goals and Self improvements
+
+Add the end of the game reveal computers ships.
+Store users name and score and create a leaderboard
+Start having bigger ships, take up more positions, and score higher points for bigger ships.
+My goal was to get this game to work for the player, my code is very messy and needs refactoring and naming my functions and variable needs improvement, I will work on projects on my on time just to get more practice on organising my code and having better names so it is easy to understand.
+
 
 
