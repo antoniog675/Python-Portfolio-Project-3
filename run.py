@@ -99,14 +99,13 @@ def count_hit_ships(board):
                 if column == 'X':
                     count += 1
         return count
-    else:
-        if board == COMPUTER_HIDDEN_BOARD:
-            count = 0
-            for row in board:
-                for column in row:
-                    if column == '*':
-                        count += 1
-            return count
+    if board == COMPUTER_HIDDEN_BOARD:
+        count = 0
+        for row in board:
+            for column in row:
+                if column == '*':
+                    count += 1
+        return count
 
 
 def play_game():
