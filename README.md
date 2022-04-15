@@ -128,6 +128,17 @@ If user already guessed the location the game will not continue until it enters 
 
 <ul><li>No warning errors from PEP8online.com</li></ul>
 
+## Libraries
+
+<ul>
+<li>random</li>
+<p>Random library was used so that randint()could generate a number between 0-5 for the computer to guess player ship locations</p>
+<li>os</li>
+The 'os' library was used so that the os.system('clear') is used to be able to clear the terminal when loading the new board and get updates for the player whether they HIT or MISSED computer ships and if they won or lost.
+<li>sys</li>
+The 'sys' library was used to use the sys.exit() for when the game is over, or if player quite the game.
+</ul>
+
 ## Deployment
 
 <ul>How the project was deployed
@@ -142,10 +153,9 @@ If user already guessed the location the game will not continue until it enters 
 ## Credits and Acknowledgments 
 
 <ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>Big mention to my mentor Narender Singh with this project, helped me as much as he could with my problems I had</li>
+<li>YouTube, stack overflow, codeacademy and knowledge mavens to inspire with ideas and how to handle errors and validation, generating the board I used.</li>
+<li>Code institue for allowing me to use the template and being able to deploy it on the Heroku App.</li>
 </ul>
 
 ## Future goals and Self improvements
