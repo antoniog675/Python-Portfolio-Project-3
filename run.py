@@ -123,6 +123,7 @@ def play_game():
         print_board(GUESS_BOARD)
         print('\nGuess a battleship location')
         row, column = user_guess()
+        clear_screen()
         if GUESS_BOARD[row][column] == "~" or GUESS_BOARD[row][column] == "X":
             print("You guessed that one already.")
             continue
@@ -141,6 +142,7 @@ def play_game():
         player_ship_count = count_hit_ships(GUESS_BOARD)
         computer_ship_count = count_hit_ships(COMPUTER_HIDDEN_BOARD)
 
+
         print(f'Player hit ships: {player_ship_count}')
         print(f'Computer hit ships: {computer_ship_count} \n')
         print("You have " + str(turns) + " turn(s) left \n")
@@ -151,6 +153,7 @@ def play_game():
         elif turns > 0:
             print_next_board = input("Do you want to continue? Y/N:\n").upper()
             continue_game(print_next_board)
+            clear_screen()
         # If turns is greater than 0 game will carry on
         # If turns hits 0 then winner will be decided
 
@@ -201,13 +204,19 @@ def get_user_inputs():
     print(f"Welcome {user_name}, are you ready to play the game?")
     start_game = input("Enter 'Y' to begin or 'N' to exit:\n ").upper()
     if start_game == "Y":
+        clear_screen()
         play_game()
     elif start_game == "N":
+        clear_screen()
         print("You have left the game")
         sys.exit()
     else:
         print("Uh oh, please enter a valid input")
         get_user_inputs()
+
+
+def clear_screen():
+    os.system('clear')
 
 
 def win_lose_or_tie(player_ship_count, computer_ship_count, turns):
