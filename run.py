@@ -8,16 +8,22 @@ import sys
 import os
 
 HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
-# Randomly places ships for user, computer will try and guess this.
+# Randomly places ships for the computer, this is called hidden
+# board as this is hidden from the player, this board will be used 
+# to compare the guess board against it to see if there are any ships
+# on that location.
 
 GUESS_BOARD = [[" "] * 6 for i in range(6)]
-# User guessing board for computers fleet, computers hidden board.
+# This is computers board which is blank, to the player, when player
+# makes a guess this bored will update if user missed or hit.
 
 COMPUTER_HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
-# Users board, ships hidden, users will be able to see they're own board
+# This will be the players board, with the ships placed randomly,
+# This will be computer hidden board as this is hidden from the 
+# computer.
+# If computers row and column matches the 'X' on this board
+# it will add a miss or hit.
 
-COMPUTER_GUESS_BOARD = [[" "] * 6 for i in range(6)]
-# Computer will be using this for its guess's
 
 LETTERS_TO_NUMBERS = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5}
 
