@@ -94,7 +94,7 @@ def count_hit_ships(board):
             for column in row:
                 if column == 'X':
                     count += 1
-            return count
+        return count
     else:
         if board == COMPUTER_HIDDEN_BOARD:
             count = 0
@@ -119,6 +119,7 @@ def play_game():
     place_ships(COMPUTER_HIDDEN_BOARD)  # Users ships placed randomly for them
     turns = 10
     while turns > 0:
+        print_board(HIDDEN_BOARD)
         print_board(COMPUTER_HIDDEN_BOARD)
         print_board(GUESS_BOARD)
         print('\nGuess a battleship location')
@@ -135,6 +136,7 @@ def play_game():
             print("\nYOU MISSED!")
             GUESS_BOARD[row][column] = "~"
             turns -= 1
+
         computer_guess_location = computers_guess()
         computer_guess_validate(computer_guess_location)
         print(f'Computer guessed {computer_guess_location}\n')
@@ -142,16 +144,13 @@ def play_game():
         player_ship_count = count_hit_ships(GUESS_BOARD)
         computer_ship_count = count_hit_ships(COMPUTER_HIDDEN_BOARD)
 
-
         print(f'Player hit ships: {player_ship_count}')
         print(f'Computer hit ships: {computer_ship_count} \n')
-        print("You have " + str(turns) + " turn(s) left \n")
-        # Tracks score of the game
-
+        print("You have " + str(turns) + " turn(s) left") # Tracks score of the game
         if (turns == 0) or (player_ship_count or computer_ship_count == 5):
             win_lose_or_tie(player_ship_count, computer_ship_count, turns)
-        elif turns > 0:
-            print_next_board = input("Do you want to continue? Y/N:\n").upper()
+        if turns > 0:
+            print_next_board = input("Do you want to continue? Y/N: \n").upper()
             continue_game(print_next_board)
             clear_screen()
         # If turns is greater than 0 game will carry on
