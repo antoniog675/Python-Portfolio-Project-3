@@ -9,7 +9,7 @@ import os
 
 HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
 # Randomly places ships for the computer, this is called hidden
-# board as this is hidden from the player, this board will be used 
+# board as this is hidden from the player, this board will be used
 # to compare the guess board against it to see if there are any ships
 # on that location.
 
@@ -19,7 +19,7 @@ GUESS_BOARD = [[" "] * 6 for i in range(6)]
 
 COMPUTER_HIDDEN_BOARD = [[" "] * 6 for i in range(6)]
 # This will be the players board, with the ships placed randomly,
-# This will be computer hidden board as this is hidden from the 
+# This will be computer hidden board as this is hidden from the
 # computer.
 # If computers row and column matches the 'X' on this board
 # it will add a miss or hit.
