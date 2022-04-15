@@ -165,7 +165,7 @@ def continue_game(x):
     if x == "Y":
         pass
     elif x == "N":
-        print("GAME OVER")
+        print("GAME OVER, you left the game!")
         exit()
     else:
         return continue_game(input("Please enter Y/N: \n").upper())
@@ -204,7 +204,7 @@ def get_user_inputs():
         play_game()
     elif start_game == "N":
         print("You have left the game")
-        exit()
+        sys.exit()
     else:
         print("Uh oh, please enter a valid input")
         get_user_inputs()
