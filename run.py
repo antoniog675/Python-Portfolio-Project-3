@@ -209,14 +209,13 @@ def get_user_inputs():
     This function is going to get the users input to run the main game, if
     will keep looping if user give anything else except a 'Y' or 'N'
     """
-    user_name = input("What is your name?: \n")
+    user_name = input("What is your name?: ")
     print(f"Welcome {user_name}, are you ready to play the game?")
-    start_game = input("Enter 'Y' to begin or 'N' to exit:\n ").upper()
+    start_game = input("Enter 'Y' to begin or 'N' to exit: ").upper()
     if start_game == "Y":
         clear_screen()
         play_game()
     elif start_game == "N":
-        clear_screen()
         print("You have left the game")
         sys.exit()
     else:
