@@ -98,6 +98,17 @@ If user already guessed the location the game will not continue until it enters 
 
 </ul>
 
+## Data Model
+
+For this game I created 3 boards, a hidden board from the user, which will be the computers board which also has the locations of the computer ships. A guess board for the player, where they can put their guesses which will be compared against the hidden board. The computer hidden board will be the players board, this will show the player their ships as soon as the board is loaded, computer guesses will be compared against this board to see if the hit or miss.
+
+Board will be 6x6, row 1-6 and column A-F. For each 'X' on the players board that a computer guesses the score of the computer will increment by 1 and turns will decrement by 1 and the player ship will turn to a '*'. If the hidden boards location that players guessed has an 'X', the player guess board will place an 'X' on the location.
+
+Boards will be printed after every update, the function place_ships() will place the 'X' randomly for player and computer. user_guess() function will validate users inpute/guess to make sure correct values are inputed. The computer_guess() function will return the computers guess.
+The function count_hit_ships(board) will count the number of hit ships for the board that has been passed through
+
+The win_lose_or_tie(player_ship_count, computer_ship_count, turns) function is called when either player/computer hits all of the opponents ships OR both player and computer run out of turns.
+This will decide the winner and announce it at the end, while also printing out the final board
 
 ## Testing
 
@@ -154,7 +165,7 @@ The 'sys' library was used to use the sys.exit() for when the game is over, or i
 
 <ul>
 <li>Big mention to my mentor Narender Singh with this project, helped me as much as he could with my problems I had</li>
-<li>YouTube, stack overflow, codeacademy and knowledge mavens to inspire with ideas and how to handle errors and validation, generating the board I used.</li>
+<li>YouTube, stack overflow, codeacademy and knowledge mavens to inspire with ideas and how to handle errors and validation,  and for generating the board that was used for this game.</li>
 <li>Code institue for allowing me to use the template and being able to deploy it on the Heroku App.</li>
 </ul>
 
