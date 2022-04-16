@@ -5,7 +5,7 @@
 
 [Live Link of my website](https://antonio-battleships.herokuapp.com/)
 
-![](assets/imagess/amiresponsive_python.jpg)
+![Screenshot of the game on amiresponsive](assets/imagess/amiresponsive_python.jpg)
 
 ## How the game works
 <hr>
@@ -25,14 +25,13 @@ If user already guessed the location the game will not continue until it enters 
 ## Features
 <hr>
 
-![](assets/imagess/battleships_introduction.jpg)
-![](assets/imagess/press_no_leave_start.jpg)
-
+![Game greeting player and asking for their name](assets/imagess/battleships_introduction.jpg)
+![Image of message 'You have left the game.." when users select 'N' at the start of the game](assets/imagess/press_no_leave_start.jpg)
 <p>In this part of the game it will welcome the player to the game and ask for their name, and then will ask the player if they are ready to play, when they say 'Y' a board will be generated with 5 ships placed in random locations</p>
 <p>If user selects no it will exit the game with a message</p>
 
 
-![](assets/imagess/player_computer_boards_start.jpg)
+![Image of player and computer board printed out on the terminal](assets/imagess/player_computer_boards_start.jpg)
 
 <p>In the image above is how the the terminal is going to look for the majority of the game, the 'X' marks the users ships placed on their board, and the computer board is blank as we are going to try and guess those locations</p>
 <p>Right below the two boards the game is requesting a row, in a number, and a column in a character to get the location of the players guess on where the computers ships are hidden</p>
@@ -41,31 +40,31 @@ If user already guessed the location the game will not continue until it enters 
 
 <summary> <h2>More Features of the game</h2> </summary>
 
-![](assets/imagess/same_location_message.jpg)
+![If players guess the same location, a message telling them they have guessed it will print out on the terminal](assets/imagess/same_location_message.jpg)
 
-![](assets/imagess/player_miss_comp_hit.jpg)
+![Error messages printing out of players enter invalid inputs](assets/imagess/player_miss_comp_hit.jpg)
 </details>
 <hr>
 
 ## Input validation and Error messages
 <hr>
 
-![](assets/imagess/enter_valid_num.jpg)
+![Number is require in this input, if anything else is put it will throw an error and ask for a number between 1-6](assets/imagess/enter_valid_num.jpg)
 
 <p>On the image above the game will not go on unless an integer is put in</p>
 
-![](assets/imagess/enter_number_in_range.jpg)
+![If players guess is out of range it will throw an error](assets/imagess/enter_number_in_range.jpg)
 
 <p>If the player guesses a number out of range then the same thing will happen as above, player will be asked to put a valid input</p>
 
-![](assets/imagess/enter_valid_letter.jpg)
+![If the player enters a number where a character is required it will throw an error message](assets/imagess/enter_valid_letter.jpg)
 
 <p>On the image above is an image of the game asking the player to enter a valid character to be able to find the position</p>
 
 ## Game updates and NEW ship placement
 <hr>
 
-![](assets/imagess/game_updates_score.jpg)
+![Game updates, if playeror computer hit or miss. Updated scores if there is a hit, turns decrement by 1 after each turn. Message to continue game will be shown](assets/imagess/game_updates_score.jpg)
 
 <ul>
 <li>When user puts their guess through the computer, it will see if the player hit a ship, the computer will guess as well and will check if the computer guess hit a player ship.</li>
@@ -74,10 +73,10 @@ If user already guessed the location the game will not continue until it enters 
 <li>If the player says 'N' then the game will shut down</li>
 </ul>
 
-![](assets/imagess/new_board%20with%20locations.jpg)
+![Image of new boards, with hit ships and missed ships guesses.](assets/imagess/new_board%20with%20locations.jpg)
 
 <ul>
-<li>Updated board is now printed, '*' on players board marks a computer hitting the players ships, the '~' on both player and computer board will mark misses. The 'X' on the computers board is marking a HIT for the player</li>
+<li>Updated board is now printed, '*' on players board marks a computer hitting the players ships, the '~' on both player and computer board will mark misses. The 'X' on the computer board is marking a HIT for the player</li>
 </ul>
 
 ## Game outcome
@@ -85,15 +84,15 @@ If user already guessed the location the game will not continue until it enters 
 
 <ul>
 
-![](assets/imagess/end_results.jpg)
+![End of game results, will print out final game update, scores and winnor is announced](assets/imagess/end_results.jpg)
 
 <li>In this outcome when both players have run out of turns it will compare the number of ships each player hit, player with the higher hit ship count wins, in this instance the computer won, if the user has a higher hit count then the message "Congratulations, you beat the computer!" will be diplayed and the game will end.</li>
 <li>The game will show the number of hit ships for the player and computer and will print out the final board of all the hit ships and missed ships like the picture below.</li>
 
-![](assets/imagess/end_results_2.jpg)
+![The 2nd part of this image is the final boards printed out](assets/imagess/end_results_2.jpg)
 
 
-![](assets/imagess/tie_outcome_battleships.jpg)
+![This image shows 'It is a tie' if player and computer scores are the same](assets/imagess/tie_outcome_battleships.jpg)
 <li>If both players have the same scores then it will be a tie, game will end.</li>
 
 </ul>
